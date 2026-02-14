@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="bg-green-600 p-1.5 rounded-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight">{{ app_name }}</span>
+                </div>
+                <div>
+                    {% if demo_mode %}
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
+                        <span class="w-2 h-2 mr-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                        Demo Mode Enabled
+                    </span>
+                    {% else %}
+                    <span
+                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                        <span class="w-2 h-2 mr-1.5 rounded-full bg-green-500"></span>
+                        Production Ready
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <!-- Side: Campaign Form -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="glass-card p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h2 class="text-lg font-semibold mb-5 text-slate-900 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        Launch Broadcast
+                    </h2>
+
+                    <form id="broadcastForm" class="space-y-4">
+                        <div>
+                            <label
+                                class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Template
+                                Name</label>
+                            <input type="text" id="template_name" name="template_name" required
+                                placeholder="e.g. business_notification_v1"
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-600 outline-none transition-all placeholder:text-slate-400">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Language</label>
+                                <input type="text" id="language" name="language" value="en_US" required
+                                    class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-600 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Variables
+                                ({{1}}, {{2}}...)</label>
+                            <input type="text" id="variables" name="variables" placeholder="John, 10:30 AM"
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-600 outline-none transition-all placeholder:text-slate-400">
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Phone
+                                Numbers</label>
+                            <textarea id="numbers" name="numbers" rows="5" required
+                                placeholder="923123456789&#10;971501234567"
+                                class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500/20 focus:border-green-600 outline-none transition-all placeholder:text-slate-400"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn"
+                            class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50">
+                            <span id="btnText">Execute Campaign</span>
+                            <svg id="loadingSpinner" class="hidden animate-spin h-5 w-5 text-white" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="p-5 rounded-2xl bg-slate-900 text-slate-400 text-xs border border-slate-800">
+                    <p class="mb-2 uppercase font-bold tracking-widest text-slate-500">Compliance & Security</p>
+                    <p>Strictly uses meta-approved HSM templates. No free-form messaging supported to ensure high
+                        deliverability and compliance.</p>
+                </div>
+            </div>
+
+            <!-- Main: Activity Logs -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Stats Overview -->
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="glass-card p-5 rounded-2xl">
+                        <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Total Broadcasts
+                        </p>
+                        <p id="statTotal" class="text-2xl font-bold">0</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border-l-4 border-l-green-500">
+                        <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Delivered</p>
+                        <p id="statSuccess" class="text-2xl font-bold text-green-600">0</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border-l-4 border-l-red-500">
+                        <p class="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Anomalies</p>
+                        <p id="statFailed" class="text-2xl font-bold text-red-600">0</p>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="glass-card rounded-2xl shadow-sm overflow-hidden border border-slate-200">
+                    <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-white/50">
+                        <h2 class="font-semibold text-slate-900">Recent Transmission Logs</h2>
+                        <button onclick="loadLogs()"
+                            class="p-2 hover:bg-slate-100 rounded-lg transition-colors text-slate-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr
+                                    class="bg-slate-50/50 text-slate-500 text-[10px] uppercase font-bold tracking-widest border-b border-slate-100">
+                                    <th class="px-6 py-4">Recipient</th>
+                                    <th class="px-6 py-4 text-center">Status</th>
+                                    <th class="px-6 py-4">Timestamp</th>
+                                    <th class="px-6 py-4">Signal/Error</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTableBody" class="text-sm divide-y divide-slate-50">
+                                <!-- Logs will appear here -->
+                            </tbody>
+                        </table>
+                        <div id="noLogsMsg" class="hidden py-20 text-center">
+                            <div class="flex flex-col items-center gap-2 text-slate-400">
+                                <svg class="w-10 h-10 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                    </path>
+                                </svg>
+                                <p>No logs available in current rotation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 mt-10">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+            <p>&copy; 2024 WhatsApp automation engine. Built for Meta Cloud API integration.</p>
+            <div class="flex gap-6 items-center">
+                <span>Demo Mode: <b class="text-{{ 'amber-600' if demo_mode else 'green-600' }}">{{'Active (Simulation)'
+                        if demo_mode else 'Production'}}</b></span>
+                <span class="opacity-30">|</span>
+                <span>Port: 8000</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
