@@ -54,4 +54,4 @@ If you found this template helpful or want to discuss AI systems, feel free to r
 
 - 📧 **Email**: [hassanaiengineer@gmail.com](mailto:hassanaiengineer@gmail.com)
 - 🔗 **LinkedIn**: [Hassan Khan](https://www.linkedin.com/in/hassan-khan-4961b722b/)
-- 🔗 **Upwork**: [Work with me on Upwork](https://www.upwork.com/freelancers/~016ca6a619d9683838)
+
