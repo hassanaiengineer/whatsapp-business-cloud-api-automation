@@ -47,4 +47,11 @@ When `DEMO_MODE` is active, the system simulates real WhatsApp API behavior:
 This project strictly follows WhatsApp Business API policies. It exclusively supports **Message Templates (HSM)** to ensure 100% deliverability and compliance with Meta's anti-spam regulations.
 
 ---
-*Developed for professional showcase – Portfolio grade code.*
+
+## 🤝 Let's Connect
+
+If you found this template helpful or want to discuss AI systems, feel free to reach out:
+
+- 📧 **Email**: [hassanaiengineer@gmail.com](mailto:hassanaiengineer@gmail.com)
+- 🔗 **LinkedIn**: [Hassan Khan](https://www.linkedin.com/in/hassan-khan-4961b722b/)
+- 🔗 **Upwork**: [Work with me on Upwork](https://www.upwork.com/freelancers/~016ca6a619d9683838)
