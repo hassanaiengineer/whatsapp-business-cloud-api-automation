@@ -1,7 +1,3 @@
-/**
- * WhatsApp Business Automation - Client Logic
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     loadLogs();
 });
