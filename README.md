@@ -29,7 +29,7 @@ A high-performance, professional-grade WhatsApp broadcast system built for moder
 
 2. **Configuration**:
    - Create a `.env` file based on `.env.example`.
-   - **Demo Mode**: Set `DEMO_MODE=true` to simulate broadcasts for client presentations.
+   - **Demo Mode**: Set `DEMO_MODE=true` to simulate broadcasts.
    - **Production**: Set `DEMO_MODE=false` and provide `META_ACCESS_TOKEN`, `PHONE_NUMBER_ID`, etc.
 
 3. **Execution**:
@@ -37,7 +37,7 @@ A high-performance, professional-grade WhatsApp broadcast system built for moder
    uvicorn app.main:app --reload
    ```
 
-## 🧪 Demo Mode (Client Showcase)
+## 🧪 Demo Mode (Showcase)
 When `DEMO_MODE` is active, the system simulates real WhatsApp API behavior:
 - **Latent Delivery**: Mimics network delays for a realistic processing feel.
 - **Randomized Signals**: Generates both successful deliveries and realistic API errors.
