@@ -2,8 +2,9 @@
 
 A high-performance, professional-grade WhatsApp broadcast system built for modern businesses. This engine leverages the **Meta WhatsApp Cloud API** to deliver template-based notifications, marketing broadcasts, and transactional signals at scale.
 
-![WhatsApp Business Automation Dashboard](output/home.png)
-
+| Before Run | After Run |
+| :---: | :---: |
+| ![Before Run](output/1.png) | ![After Run](output/2.JPG) |
 ## 🌟 Key Pillars
 - **Transactional Precision**: Designed for official business visits, notifications, and alerts.
 - **SaaS-Grade UI**: A clean, responsive dashboard built with Tailwind CSS and Inter typography.
