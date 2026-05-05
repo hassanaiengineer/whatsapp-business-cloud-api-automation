@@ -36,9 +36,16 @@ async def send_whatsapp_template(to_phone: str, template_name: str, language_cod
         }
     }
     
+    import asyncio
     try:
         logger.info(f"[PROD MODE] Sending real broadcast to {to_phone}")
-        response = requests.post(url, headers=headers, data=json.dumps(payload))
+        response = await asyncio.to_thread(
+            requests.post,
+            url,
+            headers=headers,
+            data=json.dumps(payload),
+            timeout=10
+        )
         response_data = response.json()
         
         if response.status_code == 200:
