@@ -97,11 +97,16 @@ async def get_logs(db: Session = Depends(get_db)):
     logs = db.query(models.MessageLog).order_by(models.MessageLog.timestamp.desc()).limit(50).all()
     formatted_logs = []
     for log in logs:
+        try:
+            response_data = json.loads(log.response) if log.response else {}
+        except json.JSONDecodeError:
+            response_data = {"error": "Invalid JSON data in database"}
+            
         formatted_logs.append({
             "id": log.id,
             "phone": log.phone,
             "status": log.status,
             "timestamp": log.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
-            "response": json.loads(log.response) if log.response else {}
+            "response": response_data
         })
     return formatted_logs
